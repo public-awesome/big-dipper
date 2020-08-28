@@ -29,7 +29,7 @@
   "genesisFile": "http://localhost:26657/genesis",
   "remote": {
     "rpc": "http://localhost:26657",
-    "lcd": "http://localhost:1317"
+    "lcd": "http://localhost:1337"
   },
   "debug": {
     "startTimer": true,
