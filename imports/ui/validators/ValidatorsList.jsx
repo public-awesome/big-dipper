@@ -77,7 +77,7 @@ export default class Validators extends Component{
 
         return <div id="validator-list">
             <Helmet>
-                <title>Cosmos Validator List | The Big Dipper</title>
+                <title>Cosmos Validator List | Stakebird</title>
                 <meta name="description" content="Here is a list of Cosmos Validators" />
             </Helmet>
             <Row>
