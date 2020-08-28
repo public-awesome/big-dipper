@@ -1,43 +1,40 @@
-import { Meteor } from 'meteor/meteor';
-import { withTracker } from 'meteor/react-meteor-data';
-import { Chain } from '/imports/api/chain/chain.js';
-import { Validators } from '/imports/api/validators/validators.js';
-import TopValidators from './TopValidators.jsx';
+import { Meteor } from "meteor/meteor";
+import { withTracker } from "meteor/react-meteor-data";
+import { Chain } from "/imports/api/chain/chain.js";
+import { Validators } from "/imports/api/validators/validators.js";
+import TopValidators from "./TopValidators.jsx";
 
 export default TopValidatorsContainer = withTracker(() => {
-    let chainHandle;
-    let validatorsHandle;
-    let loading = true;
+  let chainHandle;
+  let validatorsHandle;
+  let loading = true;
 
-    if (Meteor.isClient){
-        chainHandle = Meteor.subscribe('chain.status');
-        validatorsHandle = Meteor.subscribe('validators.all');
-        loading = (!validatorsHandle.ready() && !chainHandle.ready());    
+  if (Meteor.isClient) {
+    chainHandle = Meteor.subscribe("chain.status");
+    validatorsHandle = Meteor.subscribe("validators.all");
+    loading = !validatorsHandle.ready() && !chainHandle.ready();
+  }
+
+  let status;
+  let validators;
+  let validatorsExist;
+
+  if (Meteor.isServer || !loading) {
+    status = Chain.findOne({ chainId: Meteor.settings.public.chainId });
+    validators = Validators.find({ status: 3 }).fetch();
+
+    if (Meteor.isServer) {
+      // loading = false;
+      validatorsExist = !!validators && !!status;
+    } else {
+      validatorsExist = !loading && !!validators && !!status;
     }
+  }
 
-    let status;
-    let validators;
-    let validatorsExist;
-    
-    if (Meteor.isServer || !loading){
-        status = Chain.findOne({chainId:Meteor.settings.public.chainId});
-        validators = Validators.find({status: 3}).fetch();
-
-        if (Meteor.isServer){
-            // loading = false;
-            validatorsExist = !!validators && !!status;
-        }
-        else{
-            validatorsExist = !loading && !!validators && !!status;
-        }
-        
-    }
-
-    return {
-        loading,
-        validatorsExist,
-        status: validatorsExist ? status : {},
-        validators: validatorsExist ? validators : {}
-    };
+  return {
+    loading,
+    validatorsExist,
+    status: validatorsExist ? status : {},
+    validators: validatorsExist ? validators : {},
+  };
 })(TopValidators);
-
