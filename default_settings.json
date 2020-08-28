@@ -1,57 +1,49 @@
 {
-    "public":{
-        "chainName": "Cosmos Testnet",
-        "chainId": "{Chain ID}",
-        "gtm": "{Add your Google Tag Manager ID here}",
-        "slashingWindow": 10000,
-        "uptimeWindow": 250,
-        "initialPageSize": 30,
-        "secp256k1": false,
-        "bech32PrefixAccAddr": "cosmos",
-        "bech32PrefixAccPub": "cosmospub",
-        "bech32PrefixValAddr": "cosmosvaloper",
-        "bech32PrefixValPub": "cosmosvaloperpub",
-        "bech32PrefixConsAddr": "cosmosvalcons",
-        "bech32PrefixConsPub": "cosmosvalconspub",
-        "bondDenom": "uatom",
-        "powerReduction": 1000000,
-        "coins": [
-            {
-                "denom": "uatom",
-                "displayName": "ATOM",
-                "displayNamePlural": "ATOMS",
-                "fraction": 1000000
-            }, 
-            {
-                "denom": "umuon",
-                "displayName": "MUON",
-                "displayNamePlural": "MUONS",
-                "fraction": 1000000
-            } 
-        ],
-        "gasPrice": 0.02,
-        "coingeckoId": "cosmos"
-    },
-    "genesisFile": "{Replace the address of the genesis file of the chain}",
-    "remote":{
-        "rpc":"https://gaia-seeds.interblock.io",
-        "lcd":"https://gaia-seeds.interblock.io:1317"
-    },
-    "debug": {
-        "startTimer": true,
-        "readGenesis": true
-    },
-    "params":{
-        "startHeight": 0,
-        "defaultBlockTime": 5000,
-        "blockInterval": 15000,
-        "consensusInterval": 1000,
-        "statusInterval":7500,
-        "signingInfoInterval": 1800000,
-        "proposalInterval": 5000,
-        "missedBlocksInterval": 60000,
-        "delegationInterval": 900000
-    }
+  "public": {
+    "chainName": "Stakebird Testnet",
+    "chainId": "localnet-1",
+    "gtm": "",
+    "slashingWindow": 10000,
+    "uptimeWindow": 250,
+    "initialPageSize": 30,
+    "secp256k1": false,
+    "bech32PrefixAccAddr": "stake",
+    "bech32PrefixAccPub": "stakepub",
+    "bech32PrefixValAddr": "stakevaloper",
+    "bech32PrefixValPub": "stakevaloperpub",
+    "bech32PrefixConsAddr": "stakevalcons",
+    "bech32PrefixConsPub": "stakevalconspub",
+    "bondDenom": "ustb",
+    "powerReduction": 1000000,
+    "coins": [
+      {
+        "denom": "ustb",
+        "displayName": "STB",
+        "displayNamePlural": "STB",
+        "fraction": 1000000
+      }
+    ],
+    "gasPrice": 0.02,
+    "coingeckoId": "stakebird"
+  },
+  "genesisFile": "http://localhost:26657/genesis",
+  "remote": {
+    "rpc": "http://localhost:26657",
+    "lcd": "http://localhost:1317"
+  },
+  "debug": {
+    "startTimer": true,
+    "readGenesis": true
+  },
+  "params": {
+    "startHeight": 0,
+    "defaultBlockTime": 5000,
+    "blockInterval": 15000,
+    "consensusInterval": 1000,
+    "statusInterval": 7500,
+    "signingInfoInterval": 1800000,
+    "proposalInterval": 5000,
+    "missedBlocksInterval": 60000,
+    "delegationInterval": 900000
+  }
 }
-
-
