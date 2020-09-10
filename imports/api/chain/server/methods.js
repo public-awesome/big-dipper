@@ -61,7 +61,7 @@ Meteor.methods({
 
             // Since Tendermint v0.33, validator page default set to return 30 validators.
             // Query latest height with page 1 and 100 validators per page.
-            url = RPC+`/validators?height=${chain.latestBlockHeight}&page=1&per_page=100`;
+            url = RPC+`/validators?page=1&per_page=100`;
             response = HTTP.get(url);
             let validators = JSON.parse(response.content);
             validators = validators.result.validators;
@@ -95,16 +95,16 @@ Meteor.methods({
                 }
 
                 if ( Coin.StakingCoin.denom ) {
-                    // url = LCD + '/supply/total/'+ Coin.StakingCoin.denom;
-                    // try{
-                    //     response = HTTP.get(url);
-                    //     let supply = JSON.parse(response.content).result;
-                    //     chainStates.totalSupply = parseInt(supply);
-                    // }
-                    // catch(e){
-                    //     console.log(url);
-                    //     console.log(e);
-                    // }
+                    url = LCD + '/bank/total/'+ Coin.StakingCoin.denom;
+                    try{
+                        response = HTTP.get(url);
+                        let supply = JSON.parse(response.content).result;
+                        chainStates.totalSupply = parseInt(supply);
+                    }
+                    catch(e){
+                        console.log(url);
+                        console.log(e);
+                    }
 
                     url = LCD + '/distribution/community_pool';
                     try {
@@ -150,7 +150,7 @@ Meteor.methods({
                         console.log(url);
                         console.log(e);
                     }
-            		}
+            	}
 
                 ChainStates.insert(chainStates);
             }
@@ -239,7 +239,7 @@ Meteor.methods({
                                 delegator_address: msg[m].value.delegator_address,
                                 voting_power: Math.floor(parseInt(msg[m].value.value.amount) / Coin.StakingCoin.fraction),
                                 jailed: false,
-                                status: 2
+                                status: 3
                             }
 
                             totalVotingPower += validator.voting_power;
