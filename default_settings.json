@@ -21,6 +21,12 @@
         "displayName": "STB",
         "displayNamePlural": "STB",
         "fraction": 1000000
+      },
+      {
+        "denom": "uatom",
+        "displayName": "ATOM",
+        "displayNamePlural": "ATOM",
+        "fraction": 1000000
       }
     ],
     "gasPrice": 0.02,
