@@ -13,7 +13,7 @@
           password:
             from_secret: docker_password
         when:
-          branch: albatross-1
+          branch: albatross-stb-big-dipper
           event:
             - push
       - name: discord
@@ -27,6 +27,6 @@
           status: [success, failure]
 ---
 kind: signature
-hmac: 6cd72547e6cc9b475f666bf0d0a1ac3a3590c8116fa91b1d324b42310bd07098
+hmac: 9e4b8494eb947a0f37c1eb302c31207442b12379a7f9309aa2a62dc01e7eb41c
 
 ...
