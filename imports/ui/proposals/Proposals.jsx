@@ -14,21 +14,21 @@ const ProposalList = (props) => {
         <p className="lead"><T>proposals.listOfProposals</T></p>
         <Row>
             <Col md={12}>
-                <List {...props}/>
+                <List {...props} />
             </Col>
         </Row>
     </div>
 }
-export default class Proposals extends Component{
-    constructor(props){
+export default class Proposals extends Component {
+    constructor(props) {
         super(props);
     }
 
     render() {
         return <div>
             <Helmet>
-                <title>Governance Proposals on Cosmos Hub | The Big Dipper</title>
-                <meta name="description" content="Cosmos Hub incorporates on-chain governance. Come to see how on-chain governance can be achieved on The Big Dipper." />
+                <title>Governance Proposals on Cosmos Hub | Stakebird</title>
+                <meta name="description" content="Cosmos Hub incorporates on-chain governance. Come to see how on-chain governance can be achieved on Stakebird." />
             </Helmet>
             <Row>
                 <Col md={3} xs={12}><h1 className="d-none d-lg-block"><T>proposals.proposals</T></h1></Col>

@@ -1,0 +1,32 @@
+---
+    kind: pipeline
+    type: docker
+    name: default
+    steps:
+      - name: publish-docker
+        image: plugins/docker:18
+        settings:
+          dockerfile: Dockerfile
+          repo: publicawesome/big-dipper
+          username:
+            from_secret: docker_username
+          password:
+            from_secret: docker_password
+        when:
+          branch: update-stakebird
+          event:
+            - push
+      - name: discord
+        image: appleboy/drone-discord
+        settings:
+          webhook_id: 
+            from_secret: discord_webhook_id
+          webhook_token: 
+            from_secret: discord_webhook_token
+        when:
+          status: [success, failure]
+---
+kind: signature
+hmac: 9e4b8494eb947a0f37c1eb302c31207442b12379a7f9309aa2a62dc01e7eb41c
+
+...

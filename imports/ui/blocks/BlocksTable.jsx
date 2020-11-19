@@ -13,7 +13,7 @@ import i18n from 'meteor/universe:i18n';
 
 const T = i18n.createComponent();
 export default class BlocksTable extends Component {
-    constructor(props){
+    constructor(props) {
         super(props);
         this.state = {
             limit: Meteor.settings.public.initialPageSize,
@@ -26,36 +26,36 @@ export default class BlocksTable extends Component {
     isBottom(el) {
         return el.getBoundingClientRect().bottom <= window.innerHeight;
     }
-      
+
     componentDidMount() {
         document.addEventListener('scroll', this.trackScrolling);
     }
-    
+
     componentWillUnmount() {
         document.removeEventListener('scroll', this.trackScrolling);
     }
-    
+
     trackScrolling = () => {
         const wrappedElement = document.getElementById('block-table');
         if (this.isBottom(wrappedElement)) {
             // console.log('header bottom reached');
             document.removeEventListener('scroll', this.trackScrolling);
-            this.setState({loadmore:true});
+            this.setState({ loadmore: true });
             this.setState({
-                limit: this.state.limit+10
+                limit: this.state.limit + 10
             }, (err, result) => {
-                if (!err){
+                if (!err) {
                     document.addEventListener('scroll', this.trackScrolling);
                 }
-                if (result){
-                    this.setState({loadmore:false});
+                if (result) {
+                    this.setState({ loadmore: false });
                 }
             })
         }
     };
 
-    componentDidUpdate(prevProps){
-        if (this.props.location.pathname != prevProps.location.pathname){
+    componentDidUpdate(prevProps) {
+        if (this.props.location.pathname != prevProps.location.pathname) {
             this.setState({
                 sidebarOpen: (this.props.location.pathname.split("/blocks/").length == 2)
             })
@@ -64,20 +64,20 @@ export default class BlocksTable extends Component {
 
     onSetSidebarOpen(open) {
         // console.log(open);
-        this.setState({ sidebarOpen: open }, (error, result) =>{
+        this.setState({ sidebarOpen: open }, (error, result) => {
             let timer = Meteor.setTimeout(() => {
-                if (!open){
+                if (!open) {
                     this.props.history.push('/blocks');
                 }
                 Meteor.clearTimeout(timer);
-            },500)
-        }); 
+            }, 500)
+        });
     }
 
-    render(){
+    render() {
         return <div>
             <Helmet>
-                <title>Latest Blocks on Cosmos Hub | The Big Dipper</title>
+                <title>Latest Blocks on Cosmos Hub | Stakebird</title>
                 <meta name="description" content="Latest blocks committed by validators on Cosmos Hub" />
             </Helmet>
             <Row>
@@ -85,18 +85,20 @@ export default class BlocksTable extends Component {
                 <Col md={9} xs={12} className="text-md-right"><ChainStates /></Col>
             </Row>
             <Switch>
-                <Route path="/blocks/:blockId" render={(props)=> <Sidebar 
+                <Route path="/blocks/:blockId" render={(props) => <Sidebar
                     sidebar={<Block {...props} />}
                     open={this.state.sidebarOpen}
                     onSetOpen={this.onSetSidebarOpen}
-                    styles={{ sidebar: { 
-                        background: "white", 
-                        position: "fixed",
-                        width: '85%',
-                        zIndex: 4
-                    }, overlay:{
-                        zIndex: 3
-                    } }}
+                    styles={{
+                        sidebar: {
+                            background: "white",
+                            position: "fixed",
+                            width: '85%',
+                            zIndex: 4
+                        }, overlay: {
+                            zIndex: 3
+                        }
+                    }}
                 >
                 </Sidebar>} />
             </Switch>

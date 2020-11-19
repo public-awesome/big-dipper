@@ -9,15 +9,15 @@ import i18n from 'meteor/universe:i18n';
 
 const T = i18n.createComponent();
 
-export default class Distribution extends Component{
-    constructor(props){
+export default class Distribution extends Component {
+    constructor(props) {
         super(props);
     }
 
-    render(){
+    render() {
         return <div id="voting-power-dist">
             <Helmet>
-                <title>Voting Power Distribution on Cosmos Hub | The Big Dipper</title>
+                <title>Voting Power Distribution on Cosmos Hub | Stakebird</title>
                 <meta name="description" content="We would like to keep track how voting power are distributed over time among validators." />
             </Helmet>
             <Row>

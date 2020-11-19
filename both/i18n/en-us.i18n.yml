@@ -24,8 +24,7 @@ common:
     retry: 'Retry'
     rewards: 'Rewards'
 navbar:
-    siteName: 'BIG DIPPER'
-    version: '-'
+    siteName: 'Stakebird'
     validators: 'Validators'
     blocks: 'Blocks'
     transactions: 'Transactions'

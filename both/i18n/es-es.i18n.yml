@@ -23,7 +23,7 @@ common:
     cancel: 'Cancelar'
     retry: 'Reintentar'
 navbar:
-    siteName: 'BIG DIPPER'
+    siteName: 'Stakebird'
     validators: 'Validadores'
     blocks: 'Bloques'
     transactions: 'Transacciones'
