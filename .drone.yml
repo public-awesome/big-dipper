@@ -1,0 +1,34 @@
+---
+    kind: pipeline
+    type: docker
+    name: default
+    steps:
+      - name: publish-docker
+        image: plugins/docker:18
+        settings:
+          dockerfile: Dockerfile
+          repo: publicawesome/big-dipper
+          username:
+            from_secret: docker_username
+          password:
+            from_secret: docker_password
+        tags:
+          - stargaze
+        when:
+          branch: stargaze
+          event:
+            - push
+      - name: discord
+        image: appleboy/drone-discord
+        settings:
+          webhook_id: 
+            from_secret: discord_webhook_id
+          webhook_token: 
+            from_secret: discord_webhook_token
+        when:
+          status: [success, failure]
+---
+kind: signature
+hmac: fc54c752d79c80bf3f22d016c06ac38350dce69bc9af07c935e33d3ed64b26d5
+
+...
