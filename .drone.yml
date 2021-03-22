@@ -12,8 +12,8 @@
             from_secret: docker_username
           password:
             from_secret: docker_password
-        tags:
-          - stargaze
+          tags:
+            - stargaze
         when:
           branch: stargaze
           event:
@@ -29,6 +29,6 @@
           status: [success, failure]
 ---
 kind: signature
-hmac: fc54c752d79c80bf3f22d016c06ac38350dce69bc9af07c935e33d3ed64b26d5
+hmac: 3af900b4feda2d012584b3d72bdec1b635b77949e66e5ba85ec8be712d125cc8
 
 ...
